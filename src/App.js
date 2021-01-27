@@ -1,15 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-import Header from './components/navigations/Header.js'
-import Dropzone from './components/uploads/Dropzone.js'
 
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Header from './components/navigations/Header.js'
+import Home from './pages/home.js';
+import VideoEditor from './components/videoEditor/VidEditorContainer.js'
+import './App.css';
 
 function App() {
   return (
-    <div>
-      <Header/>
-      <Dropzone />
-    </div>
+    <>
+    <Header/>
+    <Switch>
+        <Route path='/' component={Home} exact />     
+        <Route path='/videoeditor' component={VideoEditor} exact/> 
+    </Switch>
+    </>
   );
 }
 

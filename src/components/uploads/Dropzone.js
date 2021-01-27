@@ -41,8 +41,6 @@ const Dropzone = () => {
   const fileUploadInputChange = (e) => {
     const formData = new FormData()
     const file = e.target.files[0]
-
-    formData.append("something", "something")
     formData.append("file", file)
     axios.post(API_URL + "upload/", formData).then((res) => {
       console.log(res)
