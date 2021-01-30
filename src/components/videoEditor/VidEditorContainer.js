@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react"
-import Loading from "../loading/Loading.js"
-import FrameEdit from "./FrameEditor.js"
-import VideoDisplay from "./VideoDisplay.js"
 import axios from "axios";
 import { API_URL } from "../../CONSTANTS"
 import styled from "styled-components"
+
+import Loading from "../loading/Loading.js"
+import VideoDisplay from "./videoarea/VideoDisplay.js"
+import SideBarSelector from "../videoEditor/sidebars/SideBarSelector"
+import SideBarEditSelector from "../videoEditor/sidebars/SideBarEditSelector"
+import TimelineContainer from "../videoEditor/timeline/TimelineContainer.js"
+
+
 
 const VideoEditor = () => {
 
@@ -23,15 +28,18 @@ const VideoEditor = () => {
   return ( 
     <>
       {!frames ? <Loading /> :
+        <>
         <GridContainer>
-          <div class="Sidebar">
-             Side Bar
+          <div>
+             <SideBarSelector/>
           </div>
-          <div class="Video">
+            <EditSelectorContainer>
+              <SideBarEditSelector/>
+            </EditSelectorContainer>
             <VideoDisplay/>
-            <FrameEdit frames={frames}/>
-          </div>
         </GridContainer>
+          <TimelineContainer/>
+        </>
       }
     </>
   )
@@ -39,12 +47,23 @@ const VideoEditor = () => {
 
 const GridContainer = styled.div`
   display: grid;
-	grid-template-columns: 30% 70%;
-	grid-template-rows: 1fr;
+	grid-template-columns: 8% 320px 70%;
+	grid-template-rows: 100%;
 	gap: 0px 0px;
 	grid-template-areas: ". .";
-	height: 95vh;
-	border: 1px solid black;
+  border: 1px solid black;
+  height: 70vh;
 `;
+
+const EditSelectorContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 2rem 0;
+`
+
+// style={{ paddingLeft: '1rem', height: "100%", overflow: "hidden", overflowY: "scroll"}}
 
 export default VideoEditor
