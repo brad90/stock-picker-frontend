@@ -13,3 +13,23 @@ button {
 	cursor: pointer;
 	outline: none;
 }
+
+@font-face {
+	font-family: "Hallington";
+	src: local("Hallington"), url(./fonts/Hallington.ttf) format("truetype");
+}
+
+@font-face {
+	font-family: "KGALittleSpark";
+	src: local("KGALittleSpark"), url(./fonts/KGALittleSpark.ttf) format("truetype");
+}
+
+@font-face {
+	font-family: "LandyNotes";
+	src: local("LandyNotes"), url(./fonts/LandyNotes.ttf) format("truetype");
+}
+
+@font-face {
+	font-family: "SilentLandfield";
+	src: local("SilentLandfield"), url(./fonts/SilentLandfield.ttf) format("truetype");
+}

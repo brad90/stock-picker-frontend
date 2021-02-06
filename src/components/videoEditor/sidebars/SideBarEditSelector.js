@@ -3,18 +3,18 @@ import styled from "styled-components"
 
 import EditOptionBox from "./EditOptionBox"
 
+
+
 const SideBarEditSelector = () => {
+
+ const FONTS = [["Hallington", "KGALittleSpark"], ["LandyNotes", "SilentLandField"], ["Hallington", "KGALittleSpark"], ["LandyNotes", "SilentLandField"], ["Hallington", "KGALittleSpark"], ["LandyNotes", "SilentLandField"]]
+ 
  return (
   <EditOptionBoxContainer>
-   <EditOptionBox />
-   <EditOptionBox />
-   <EditOptionBox />
-   <EditOptionBox />
-   <EditOptionBox />
-   <EditOptionBox />
-   <EditOptionBox />
-   <EditOptionBox />
-   <EditOptionBox />
+   {FONTS.map((fontPair, indx) => {
+    return (<EditOptionBox key={indx}fontpair={fontPair}/>)
+   }
+  )}
   </EditOptionBoxContainer>
  )
 }
@@ -22,6 +22,7 @@ const SideBarEditSelector = () => {
 const EditOptionBoxContainer = styled.div`
  display: block;
  background-color:blue;
+ height:auto;
 `
 
 

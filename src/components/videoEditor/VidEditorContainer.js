@@ -7,7 +7,6 @@ import Loading from "../loading/Loading.js"
 import VideoDisplay from "./videoarea/VideoDisplay.js"
 import SideBarSelector from "../videoEditor/sidebars/SideBarSelector"
 import SideBarEditSelector from "../videoEditor/sidebars/SideBarEditSelector"
-import TimelineContainer from "../videoEditor/timeline/TimelineContainer.js"
 
 
 
@@ -43,7 +42,9 @@ const VideoEditor = () => {
         <EditSelectorContainer>
           <SideBarEditSelector/>
         </EditSelectorContainer>
-        <VideoDisplay/>
+        <VideoDisplayContainer>
+          <VideoDisplay/>
+        </VideoDisplayContainer>
       </VideoEditorContainer>  
     )
   } 
@@ -52,22 +53,20 @@ const VideoEditor = () => {
 const VideoEditorContainer = styled.div`
   display: flex; 
   height: 100%;
-`;
-
+`
 const SideBarContainer = styled.div`
-  width:8%;
+  width:5%;
   display:flex;
 `
-
-const EditSelectorContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    overflow-y: scroll;
-    height: 90vh;
-    width: 25%;
+const VideoDisplayContainer = styled.div`
+  width:75%
 `
-
-// style={{ paddingLeft: '1rem', height: "100%", overflow: "hidden", overflowY: "scroll"}}
-
+const EditSelectorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 90vh;
+  max-width: 25%
+`
 export default VideoEditor
