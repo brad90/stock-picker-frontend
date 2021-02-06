@@ -21,6 +21,7 @@ const SideBarEditSelector = () => {
 
 const EditOptionBoxContainer = styled.div`
  display: block;
+ background-color:blue;
 `
 
 

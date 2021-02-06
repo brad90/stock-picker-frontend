@@ -12,9 +12,9 @@ import TimelineContainer from "../videoEditor/timeline/TimelineContainer.js"
 
 
 const VideoEditor = () => {
+  const [frames, setFrames] = useState([])
+  const [activeSelection, setActiveSelection] = useState(0)
 
-  const[frames, setFrames] = useState([])
-  
   useEffect(() => {
     axios.get(API_URL + "edit/").then((res) => {
       if (res.data) {
@@ -25,43 +25,47 @@ const VideoEditor = () => {
     })
   }, [])
 
-  return ( 
-    <>
-      {!frames ? <Loading /> :
-        <>
-        <GridContainer>
-          <div>
-             <SideBarSelector/>
-          </div>
-            <EditSelectorContainer>
-              <SideBarEditSelector/>
-            </EditSelectorContainer>
-            <VideoDisplay/>
-        </GridContainer>
-          <TimelineContainer/>
-        </>
-      }
-    </>
-  )
+
+  const handleEditSelction = (idx) => {
+    console.log(idx)
+    setActiveSelection(idx)
+  }
+
+
+  if (!frames) {
+    return  <Loading />
+  } else {
+    return ( 
+      <VideoEditorContainer>
+        <SideBarContainer>
+          <SideBarSelector handleSelction={(idx) => handleEditSelction(idx)} activeButton={activeSelection}/>
+        </SideBarContainer>
+        <EditSelectorContainer>
+          <SideBarEditSelector/>
+        </EditSelectorContainer>
+        <VideoDisplay/>
+      </VideoEditorContainer>  
+    )
+  } 
 }
 
-const GridContainer = styled.div`
-  display: grid;
-	grid-template-columns: 8% 320px 70%;
-	grid-template-rows: 100%;
-	gap: 0px 0px;
-	grid-template-areas: ". .";
-  border: 1px solid black;
-  height: 70vh;
+const VideoEditorContainer = styled.div`
+  display: flex; 
+  height: 100%;
 `;
+
+const SideBarContainer = styled.div`
+  width:8%;
+  display:flex;
+`
 
 const EditSelectorContainer = styled.div`
     display: flex;
     flex-direction: column;
-    position: relative;
     overflow: hidden;
     overflow-y: scroll;
-    padding: 2rem 0;
+    height: 90vh;
+    width: 25%;
 `
 
 // style={{ paddingLeft: '1rem', height: "100%", overflow: "hidden", overflowY: "scroll"}}
