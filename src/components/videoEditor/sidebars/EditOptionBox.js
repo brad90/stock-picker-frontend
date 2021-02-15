@@ -1,13 +1,16 @@
 import React from "react"
 import styled from "styled-components"
+import { useSelector, useDispatch } from "react-redux"
+import {editText} from "../../../redux/actions"
 
-const EditOptionBox = ({ fontpair }) => {
-  
- return (
+const EditOptionBox = ({fontpair}) => {
+
+  const dispatch = useDispatch()
+  return (
    <OptionBoxWrapper>
      {fontpair.map((font) => {
        return (
-         <OptionBox key={font}style={{ fontFamily: font }}>
+         <OptionBox key={font} style={{ fontFamily: font }} onClick={() => dispatch(editText({fontFamily:font}))} >
         {font}
       </OptionBox>)
      })}
@@ -15,7 +18,7 @@ const EditOptionBox = ({ fontpair }) => {
  )
 }
 
-const OptionBox = styled.div`
+const OptionBox = styled.a`
   display: flex;
   justify-content:center;
   align-items:center;
