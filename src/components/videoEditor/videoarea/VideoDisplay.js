@@ -4,6 +4,7 @@ import Draggable from 'react-draggable';
 import styled from "styled-components"
 import Video from "../file_example_MP4_480_1_5MG.mp4"
 import { Resizable } from "re-resizable";
+import TextWrapper from "./textWrapper.js"
 import "./videoDisplay.css"
 
 
@@ -11,57 +12,7 @@ import "./videoDisplay.css"
 
 const VideoDisplay = (props) => {
 
-  const [activeDrags, setActiveDrags] = useState(0)
-
-  const handleDrag = (e, ui) => {
-    const {x, y} = this.state.deltaPosition;
-    this.setState({
-      deltaPosition: {
-        x: x + ui.deltaX,
-        y: y + ui.deltaY,
-      }
-    });
-  };
-
-  const onStart = () => {
-    setActiveDrags(activeDrags + 1)
-  };
-
-  const onStop = () => {
-    setActiveDrags(activeDrags - 1)
-  };
-
-  // For controlled component
-  const adjustXPos = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const {x, y} = this.state.controlledPosition;
-    this.setState({controlledPosition: {x: x - 10, y}});
-  };
-
-  const adjustYPos = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const {controlledPosition} = this.state;
-    const {x, y} = controlledPosition;
-    this.setState({controlledPosition: {x, y: y - 10}});
-  };
-
-  const onControlledDrag = (e, position) => {
-    const {x, y} = position;
-    this.setState({controlledPosition: {x, y}});
-  };
-
-  const onControlledDragStop = (e, position) => {
-    this.onControlledDrag(e, position);
-    this.onStop();
-  };
-
-  const dragHandlers = { onStart: onStart, onStop: onStop }; 
-
   return (
-
-    
     <VideoContainer id="vidContainer">
       <Vid>
         <video width="100%" height="100%" controls>
@@ -72,19 +23,7 @@ const VideoDisplay = (props) => {
        <Content>
         {props.textObjects.map((item, index) => {
           return (
-            <Draggable bounds="parent" {...dragHandlers}>
-              <Resizable
-                  defaultSize={{
-                  width:'fitContent',
-                  height: 'fitContent',
-                }}
-                style={resizediv}
-                >
-                <TextBox contentEditable>
-                  {item.fontFamily}
-                </TextBox>
-              </Resizable>
-            </Draggable>
+            <TextWrapper item={item}/>
           )
         })}
         </Content>
@@ -93,18 +32,24 @@ const VideoDisplay = (props) => {
 }
 
 
-const mapStateToProps = state => {
-  return { textObjects: state.editOptionReducer.textObjects } 
- 
-};
-
-
-const resizediv = {
+const resizeStyle = {
+  backgroundColor: "pink", 
+  padding: "1rem",
   display: "flex",
-  alignItems: "center",
   justifyContent: "center",
-  border: "solid 1px blue",
+  alignItems: "center",
+}
+
+const mapStateToProps = state => {
+  return { textObjects: state.editOptionReducer.textObjects }  
 };
+
+
+const ContentEditable = styled.span`
+    width: inherit;
+    padding:0.5rem;
+    minWidht: 55px;
+`
 
 const VideoContainer = styled.div`
     width:100%; 
@@ -135,19 +80,6 @@ const Content = styled.div`
     background-color: yellow;
     height: 500px; 
     width: 500px;
-`
-
-const TextBox = styled.div`
-  display: flex;  
-  padding: 0.5rem;
-  width: inherit;
-  height: inherit;
-  min-width: fit-content;
-  min-height: fit-content;
-  background: transparent;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: flex;
 `
 
 
