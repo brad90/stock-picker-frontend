@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { connect } from 'react-redux';
-import Draggable from 'react-draggable';
 import styled from "styled-components"
 import Video from "../file_example_MP4_480_1_5MG.mp4"
-import { Resizable } from "re-resizable";
-import TextWrapper from "./textWrapper.js"
 import "./videoDisplay.css"
 import ResizableRect from 'react-resizable-rotatable-draggable'
+import ResizableContent from "../../resizeContent/resizeContent.js"
 
 
 
@@ -40,7 +38,7 @@ const VideoDisplay = (props) => {
 
   const handleDrag = (deltaX, deltaY) => {
     setLeft(left + deltaX)
-    setTop(left + deltaY)
+    setTop(top + deltaY)
   }
 
   return (
@@ -56,13 +54,12 @@ const VideoDisplay = (props) => {
           return (
           <>
             {/* <TextWrapper item={item} /> */}
-          <ResizableRect
+          {/* <ResizableRect
             left={left}
             top={top}
             width={width}
             height={height}
             rotateAngle={rotateAngle}
-            // aspectRatio={false}
             // minWidth={10}
             // minHeight={10}
             zoomable='n, w, s, e, nw, ne, se, sw'
@@ -76,8 +73,29 @@ const VideoDisplay = (props) => {
             // onDragStart={this.handleDragStart}
             onDrag={handleDrag}
             // onDragEnd={this.handleDragEnd}
-            />
-               </>
+              /> */}
+            <ResizableContent
+            left={left}
+            top={top}
+            width={width}
+            height={height}
+            rotateAngle={rotateAngle}
+            // minWidth={10}
+            // minHeight={10}
+            zoomable='n, w, s, e, nw, ne, se, sw'
+            rotatable={true}
+            // onRotateStart={this.handleRotateStart}
+            onRotate={handleRotate}
+            // onRotateEnd={this.handleRotateEnd}
+            // onResizeStart={this.handleResizeStart}
+            onResize={handleResize}
+            // onResizeEnd={this.handleUp}
+            // onDragStart={this.handleDragStart}
+            onDrag={handleDrag}
+            font={item.fontFamily}
+            // onDragEnd={this.handleDragEnd}/>
+              />
+            </>
           )
         })}
         </Content>
