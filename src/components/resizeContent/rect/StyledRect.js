@@ -4,14 +4,6 @@ export default styled.div`
   position: absolute;
   border: 1px solid #eb5648;
 
-  .editableConent{
-    padding: 0.5rem;
-    display: inline-block !important;
-    flex-wrap: wrap;
-    height: 100%;
-    width: 100%;
-  }
-
   .square {
     position: absolute;
     width: 7px;

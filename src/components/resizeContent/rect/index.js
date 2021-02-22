@@ -28,7 +28,8 @@ export default class Rect extends PureComponent {
     onDragStart: PropTypes.func,
     onDrag: PropTypes.func,
     onDragEnd: PropTypes.func,
-    parentRotateAngle: PropTypes.number
+    parentRotateAngle: PropTypes.number,
+    handleChange: PropTypes.func,
   }
 
   setElementRef = (ref) => { this.$element = ref }
@@ -131,7 +132,15 @@ export default class Rect extends PureComponent {
     document.addEventListener('mouseup', onUp)
   }
 
-  render () {
+  emitChange = (e) => {
+    console.log(e.target.innerText)
+  }
+
+  render() {
+
+
+    const fontContainerSize = 1.5
+   
     const {
       styles: {
         position: { centerX, centerY },
@@ -143,27 +152,37 @@ export default class Rect extends PureComponent {
       parentRotateAngle
     } = this.props
     const style = {
-      width: Math.abs(width),
-      height: Math.abs(height),
+      width: 'fit-content',
+      height: 'fit-content',
       transform: `rotate(${rotateAngle}deg)`,
       left: centerX - Math.abs(width) / 2,
-      top: centerY - Math.abs(height) / 2
+      top: centerY - Math.abs(height) / 2,
+      fontFamily: this.props.font,
+      display: 'inline-block', 
+      maxWidth: '400px',
+      maxHeight: 'max-content',
+      minWidth: '55px',
+      padding: '0.25rem',
+      fontSize: `${fontContainerSize}rem`,
     }
     const direction = zoomable.split(',').map(d => d.trim()).filter(d => d) // TODO: may be speed up
-    const fontStyle = {
-      fontFamily: this.props.font
-    }
 
     return (
       <StyledRect
         ref={this.setElementRef}
         onMouseDown={this.startDrag}
         className="rect single-resizer"
-        style={style}
-      >
-        <div className="editableConent" style={fontStyle} contentEditable>
+        style={style}     
+      >     
+        <div onInput={this.emitChange} 
+          onBlur={this.emitChange}
+          contentEditable
+          suppressContentEditableWarning={true}
+        >
           {this.props.font}
         </div>
+          
+          
         {
           rotatable &&
           <div className="rotate" onMouseDown={this.startRotate}>
