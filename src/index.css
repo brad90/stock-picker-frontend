@@ -16,20 +16,20 @@ button {
 
 @font-face {
 	font-family: "Hallington";
-	src: local("Hallington"), url(./fonts/Hallington.ttf) format("truetype");
+	src: local("Hallington"), url(./assets/fonts/Hallington.ttf) format("truetype");
 }
 
 @font-face {
 	font-family: "KGALittleSpark";
-	src: local("KGALittleSpark"), url(./fonts/KGALittleSpark.ttf) format("truetype");
+	src: local("KGALittleSpark"), url(./assets/fonts/KGALittleSpark.ttf) format("truetype");
 }
 
 @font-face {
 	font-family: "LandyNotes";
-	src: local("LandyNotes"), url(./fonts/LandyNotes.ttf) format("truetype");
+	src: local("LandyNotes"), url(./assets/fonts/LandyNotes.ttf) format("truetype");
 }
 
 @font-face {
 	font-family: "SilentLandfield";
-	src: local("SilentLandfield"), url(./fonts/SilentLandfield.ttf) format("truetype");
+	src: local("SilentLandfield"), url(./assets/fonts/SilentLandfield.ttf) format("truetype");
 }
