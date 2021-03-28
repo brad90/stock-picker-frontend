@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect, useHistory} from 'react-router-dom'
 
-import STOCKS from "../common/ticker_master.js"
-import API_URL from "../common/apis"
+import STOCK_TITLES from "../common/tickerTitle_master.js"
+import STOCK_DETAIL from "../common/tickerDetail_master.js"
+import API_URL from "../common/urls"
 import axios from "axios";
 
 
@@ -11,6 +13,8 @@ const Home = () => {
 
   const [filteredSearch, setFilteredSearch] = useState([])
   const [selectedSearch, setSelectedSearch] = useState("")
+
+  let history = useHistory()
   
   useEffect(() => {
     document.addEventListener("keyup", event => {
@@ -30,7 +34,7 @@ const Home = () => {
   const onInputSearch = (search) => {
     setSelectedSearch(search)
     if (search !== "") {
-      const filteredStocks = STOCKS.filter(stock =>
+      const filteredStocks = STOCK_TITLES.filter(stock =>
       stock.includes(search.toUpperCase()))
       setFilteredSearch(filteredStocks)
     } else {
@@ -40,11 +44,17 @@ const Home = () => {
   
   const makeSearch = () => {
 
-    axios.post(API_URL['browse'] + `search/${selectedSearch}`, {
-      search: selectedSearch
+    const ticker = STOCK_DETAIL[selectedSearch]['ticker']
+
+    axios.post(API_URL['browse'] + `search/${ticker}`, {
+      search: ticker
     })
       .then((res) => {
-      console.log(res)
+        console.log(res)
+        history.push({
+        pathname: `/browse/${selectedSearch}`,
+        state: { info: res.data[0] }
+      })
     }).catch(error => {
       console.log(error)
     })

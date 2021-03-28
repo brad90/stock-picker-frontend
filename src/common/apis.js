@@ -1,5 +1,5 @@
-const ROOT_API_URL = {
- browse: "http://localhost:8000/browse/"
+const external_APIS = {
+ financial: 'https://financialmodelingprep.com/api/v3/'
 }
 
-export default ROOT_API_URL
+export default external_APIS
