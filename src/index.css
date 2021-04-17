@@ -14,6 +14,46 @@ button {
 	outline: none;
 }
 
+a {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a:hover {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+	padding: 0rem;
+	margin: 0rem;
+}
+
+li {
+	text-decoration: none;
+	padding: 0rem;
+}
+
+div {
+	margin: 0rem;
+	padding: 0rem;
+}
+
+textarea:focus,
+input:focus {
+	outline: none;
+}
+
+textarea,
+input {
+	border: none;
+}
+
+::placeholder {
+	color: white;
+}
+
 @font-face {
 	font-family: "Hallington";
 	src: local("Hallington"), url(./assets/fonts/Hallington.ttf) format("truetype");
