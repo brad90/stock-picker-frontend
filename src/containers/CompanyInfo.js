@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import CurvedAreaChart from "../components/charts/CurvedAreaChart"
-import LineChart from "../components/charts/LineChart"
-import BarChart from "../components/charts/BarChart"
+import CurvedAreaChart from "../components/Charts/CurvedAreaChart"
+import LineChart from "../components/Charts/LineChart"
+import BarChart from "../components/Charts/BarChart"
 import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./CompanyInfo.css"

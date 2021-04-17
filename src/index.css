@@ -3,10 +3,25 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background-color: #f6fbf7;
 }
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+h1 {
+	font-size: 3rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	padding: 0;
+	margin: 0;
+	font-family: "Open Sans", sans-serif;
 }
 
 button {
@@ -38,6 +53,7 @@ li {
 div {
 	margin: 0rem;
 	padding: 0rem;
+	align-items: center;
 }
 
 textarea:focus,
@@ -52,24 +68,4 @@ input {
 
 ::placeholder {
 	color: white;
-}
-
-@font-face {
-	font-family: "Hallington";
-	src: local("Hallington"), url(./assets/fonts/Hallington.ttf) format("truetype");
-}
-
-@font-face {
-	font-family: "KGALittleSpark";
-	src: local("KGALittleSpark"), url(./assets/fonts/KGALittleSpark.ttf) format("truetype");
-}
-
-@font-face {
-	font-family: "LandyNotes";
-	src: local("LandyNotes"), url(./assets/fonts/LandyNotes.ttf) format("truetype");
-}
-
-@font-face {
-	font-family: "SilentLandfield";
-	src: local("SilentLandfield"), url(./assets/fonts/SilentLandfield.ttf) format("truetype");
 }

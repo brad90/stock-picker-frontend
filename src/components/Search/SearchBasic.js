@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import styled from "styled-components"
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 import STOCK_TITLES from "../../common/tickerTitle_master.js"
@@ -8,7 +10,7 @@ import STOCK_DETAIL from "../../common/tickerDetail_master.js"
 import API_URL from "../../common/urls"
 import axios from "axios";
 
-const SearchBasic = ({ searchTerm }) => {
+const SearchBasic = ({ isLoading }) => {
 
 
   const [filteredSearch, setFilteredSearch] = useState([])
@@ -27,12 +29,15 @@ const SearchBasic = ({ searchTerm }) => {
   const onSelectAuto = (term) => {
     setSelectedSearch(term)
     setFilteredSearch([])
+    makeSearch(term)
   }
-
 
   const autoSuggestedStocks = filteredSearch.map((term) =>
     <AutoSuggestListItem key={term} onClick={() => onSelectAuto(term)}>
       <ListItemDiv>
+        <ListItemIconWrapper>
+          <img src={require("../../assets/images/company-logos/coke.jpeg").default} style={{ width: '2rem', height: '2rem' }}/>
+        </ListItemIconWrapper>
         {term}
       </ListItemDiv>
     </AutoSuggestListItem>
@@ -50,17 +55,17 @@ const SearchBasic = ({ searchTerm }) => {
     }
   }
   
-  
-  const makeSearch = () => {
-    const ticker = STOCK_DETAIL[selectedSearch]['ticker']
 
+  const makeSearch = (selectedTick) => {
+    const ticker = STOCK_DETAIL[selectedTick]['ticker']
+    isLoading(true)
     axios.post(API_URL['browse'] + `search/${ticker}`, {
       search: ticker
     })
       .then((res) => {
-        res.data.companyname = STOCK_DETAIL[selectedSearch]['pretty']
+        res.data.companyname = STOCK_DETAIL[selectedTick]['pretty']
         history.push({
-        pathname: `/browse/${selectedSearch}`,
+        pathname: `/browse/${selectedTick}`,
         state: res.data
       })
     }).catch(error => {
@@ -74,12 +79,13 @@ const SearchBasic = ({ searchTerm }) => {
 
   return (
     <>
-    <SearchWarpper type="text" name="stockSearch" value={searchTerm} style={{ textTransform: "uppercase" }} placeholder="Search Company Name" autocomplete="new-password" onChange={e => onInputSearch(e.target.value)} onFocus={e => onFocus(e) }/>
-    <AutoSuggestWrapper>
+      <SearchWarpper type="text" name="stockSearch" value={selectedSearch} style={{ textTransform: "uppercase" }} placeholder="Search Company Name" autocomplete="new-password" onChange={e => onInputSearch(e.target.value)} onFocus={e => onFocus(e)}/>
+      <FontAwesomeIcon icon={faSearch} style={{marginLeft: "-3rem", color: "white"}}/>
+      <AutoSuggestWrapper>
         <AutoSuggestBox style={{boxShadow: filteredSearch ? '':' 1px 1px 13px 5px rgba(227,227,227,0.75)'}}>
         {autoSuggestedStocks}
-      </AutoSuggestBox>
-    </AutoSuggestWrapper>
+        </AutoSuggestBox>
+      </AutoSuggestWrapper>
     </>
   )
 }
@@ -101,21 +107,32 @@ const AutoSuggestWrapper = styled.div`
 
 const AutoSuggestBox = styled.ul`
   width: 27%;
+  margin-left: 2rem;
   background-color: white;
 `
 
 const AutoSuggestListItem = styled.li`
   padding: 0.5rem;
-  border-bottom: 1px solid pink;
+  border-bottom: 1px solid #e6e6e6;
   cursor: pointer;
   &:hover {
-    background-color: grey;
-    color: white;
+    background-color: #f5f5f5;
+    color: green;
   }
 `
 
 const ListItemDiv = styled.div`
-  text-align: left
+  text-align: left;
+  max-height: 2rem;
+  display: flex;
+  align-items: center;
+`
+const ListItemIconWrapper = styled.div`
+   overflow: hidden;
+   border-radius: 5px;
+   width: 2rem;
+   height: 2rem;
+   margin-right: 1rem;
 `
 
 

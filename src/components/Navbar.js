@@ -5,13 +5,13 @@ const Navbar = () => {
 
  return (
     <NavBarContainer>
-       <h3>Stockify</h3>
-   <ListContainer>
-    <ListItem><a>Learn</a></ListItem>
-    <ListItem><a>Learn</a></ListItem>
-    <ListItem><a>Learn</a></ListItem>
-   </ListContainer>
-  </NavBarContainer>
+      <div>
+         <h3>Stockify</h3>
+      </div>
+      <ListContainer>
+         <ListItem><a href="www.google.com">Learn</a></ListItem>
+      </ListContainer>
+   </NavBarContainer>
   
  )
 }
@@ -20,7 +20,9 @@ const Navbar = () => {
 const NavBarContainer = styled.div`
  display: flex;
  width:100%;
- background-color: pink
+ background-color: white;
+ box-shadow: -1px 4px 14px 5px rgba(210,208,208,0.75);
+ padding: 0rem 3rem;
 `
 
 const ListContainer = styled.ul`
