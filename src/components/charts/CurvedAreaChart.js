@@ -19,7 +19,16 @@ const CurvedAreaChart = (props) => {
                },
                stroke: {
                     curve: 'smooth'
-               },
+          },
+          fill: {
+               type: "gradient",
+               gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.7,
+                    opacityTo: 0.9,
+                    stops: [0, 90, 100]
+               }
+          },
                xaxis: {
                     type: 'Year',
                     categories: ['2016', '2017', '2018', '2019', '2020' ]
@@ -40,7 +49,8 @@ const CurvedAreaChart = (props) => {
                      marker: {
                          show: false,
                     },
-               },
+          },
+                
  
      })
 

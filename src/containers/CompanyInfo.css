@@ -39,27 +39,27 @@
 
 .info-section {
 	width: 100%;
-	background-color: white;
-	border-radius: 10px;
-	margin-bottom: 3rem;
-	height: 6000px;
 	padding: 1rem;
 }
 
 .about-tag-wrapper {
 	padding-top: 1rem;
+	margin-bottom: 2rem;
 }
 
 .about-tag-ul {
 	padding: 0;
+	display: flex;
 }
 
 .about-tag {
-	display: inline;
-	padding: 1rem;
-	margin-right: 0.5rem;
+	font-size: 12px;
+	display: block;
+	padding: 0.5rem 1rem;
+	margin-right: 1rem;
 	background-color: teal;
 	border-radius: 25px;
+	color: white;
 }
 
 .success-check {

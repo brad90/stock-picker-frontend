@@ -20,10 +20,7 @@ const Navbar = () => {
 const NavBarContainer = styled.div`
  display: flex;
  width:100%;
- background-color: white;
- box-shadow: -1px 4px 14px 5px rgba(210,208,208,0.75);
- padding: 0rem 3rem;
-`
+ border-bottom: 1px solid #f5f5f5;`
 
 const ListContainer = styled.ul`
  width: 100%
