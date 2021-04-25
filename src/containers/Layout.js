@@ -7,9 +7,13 @@ const Layout = ({children}) => {
  return (
   <div>
        <NavBar />
-       <main>{children}</main>
+       <LayoutStyling>{children}</LayoutStyling>
   </div>
  )
 }
+
+const LayoutStyling = styled.div`
+     height: 90vh;
+`
 
 export default Layout

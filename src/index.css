@@ -78,6 +78,6 @@ input {
 }
 
 .active {
-	background-color: #1652f0;
-	color: white;
+	background-color: #f5f5f5;
+	color: black;
 }
