@@ -4,7 +4,6 @@ import LineChart from "../components/Charts/LineChart"
 import BarChart from "../components/Charts/BarChart"
 import styled from "styled-components"
 import InfoSection from "../components/InfoSection.js"
-import Accordion from "../components/Accordion.js"
 import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./CompanyInfo.css"

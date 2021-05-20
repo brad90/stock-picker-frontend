@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import stocklist from "../../common/stockList.json"
 import STOCK_TITLES from "../../common/tickerTitle_master.js"
 import STOCK_DETAIL from "../../common/tickerDetail_master.js"
 import API_URL from "../../common/urls"
@@ -14,7 +15,7 @@ const SearchBasic = ({ isLoading, isSearch }) => {
   let history = useHistory()
   const [filteredSearch, setFilteredSearch] = useState([])
   const [selectedSearch, setSelectedSearch] = useState("")
- 
+  
   const makeSearch = (selectedTick) => {
     const ticker = STOCK_DETAIL[selectedTick]['ticker']
     isLoading(true)
@@ -36,7 +37,7 @@ const SearchBasic = ({ isLoading, isSearch }) => {
     setSelectedSearch(search)
     if (search) {
       isSearch(true)
-      setFilteredSearch(STOCK_TITLES.filter(stock => stock.includes(search.toUpperCase())))
+      setFilteredSearch(stocklist.filter(stock => stock.includes(search.toUpperCase())))
     } else {
       isSearch(false)
       setFilteredSearch([])

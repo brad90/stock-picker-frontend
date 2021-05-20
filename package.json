@@ -15,6 +15,7 @@
     "apexcharts": "^3.26.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "data.js": "^0.12.11",
     "material-ui-icons": "^1.0.0-beta.36",
     "re-resizable": "^6.9.0",
     "react": "^17.0.1",

@@ -81,3 +81,11 @@ input {
 	background-color: #f5f5f5;
 	color: black;
 }
+
+.hidden {
+	display: "none";
+}
+
+.active-accordian {
+	display: "block";
+}
