@@ -1,13 +1,45 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
+import React, { useState, useCallback } from "react";
+import { useHistory, Link } from "react-router-dom";
+import SearchBasic from "../../components/Search/SearchBasic.js";
+import API_URL from "../../common/apis/urls";
+import STOCK_TITLES from "../../data/tickerTitle_master.js";
+import STOCK_DETAIL from "../../data/tickerDetail_master.js";
+import axios from "axios";
 import "./styles.scss";
 
-import SearchBasic from "../../components/Search/SearchBasic.js";
-
 const Home = () => {
-	const [isLoadingCompany, setIsLoadingComapany] = useState(false);
-	const [isSearch, setIsSearch] = useState(false);
+	const history = useHistory();
+	const [invalidSearch, setInvalidSearch] = useState(false);
+	const stocklist = require("../../data/stockList.json");
+
+	// const handleSearch = useCallback(() => {
+	// 	makeSearch(search);
+	// }, [search]);
+	const handleSearch = (search) => {
+		makeSearch(search);
+	};
+
+	const makeSearch = (search) => {
+		const stock = stocklist.filter((stock) => stock.name.toLowerCase().includes(search));
+
+		if (stock.length) {
+			axios
+				.post(API_URL["browse"] + `search/${stock[0].symbol}`, {
+					search: stock[0],
+				})
+				.then((res) => {
+					history.push({
+						pathname: `/browse/${stock[0]}`,
+						state: res.data,
+					});
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		} else {
+			setInvalidSearch(true);
+		}
+	};
 
 	return (
 		<div className='home'>
@@ -17,7 +49,8 @@ const Home = () => {
 						<h1>Pick Stocks worth trading.</h1>
 					</strong>
 					<h5>Screen 1000's of stocks to find value.</h5>
-					<SearchBasic isLoading={setIsLoadingComapany} isSearch={setIsSearch} placeholder='Search stocks' />
+					{invalidSearch && <p>Could not find this stock. Are you sure it is correct?</p>}
+					<SearchBasic placeholder='Search stocks' handleSearch={handleSearch} />
 				</div>
 				<div className='home__afoldright'>Somethign else</div>
 			</div>

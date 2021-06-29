@@ -6,7 +6,7 @@ import styled from "styled-components";
 import InfoSection from "../../components/InfoSection.js";
 import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./CompanyInfo.css";
+// import "./CompanyInfo.css";
 
 const ComapanyInfo = (props) => {
 	const sideBarLinks = ["Summary", "Free Cashflow", "Profit Margin", "Revenue Growth", "Assets/Liabilites", "Price to Free Cashflow", "Somrthing"];
@@ -47,9 +47,7 @@ const ComapanyInfo = (props) => {
 				<div className='info-section'>
 					<SectionWrapper>
 						<AboutWrapper>
-							<AboutIconWrapper>
-								<img src={require("../assets/images/company-logos/coke.jpeg").default} style={{ width: "100%", height: "100%" }} />
-							</AboutIconWrapper>
+							<AboutIconWrapper>{/* <img src={require("../assets/images/company-logos/coke.jpeg").default} style={{ width: "100%", height: "100%" }} /> */}</AboutIconWrapper>
 							<h1>
 								{props.location.state.companyname}({props.location.state.ticker})
 							</h1>
