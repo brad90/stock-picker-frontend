@@ -1,0 +1,17 @@
+.home {
+	margin: auto;
+	width: 1000px;
+}
+
+.home__abovefold {
+	display: flex;
+	padding-top: 200px;
+	justify-content: space-between;
+}
+
+.home__afoldleft {
+	width: 50%;
+}
+.home__afoldright {
+	width: 50%;
+}
