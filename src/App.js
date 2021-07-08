@@ -10,7 +10,7 @@ function App() {
 	return (
 		<Switch>
 			<Route path='/' component={Home} exact />
-			<Route path='/browse/:searchTicker' component={ComapanyInfo} />
+			<Route path='/browse/company/:ticker/profile' render={(props) => <ComapanyInfo {...props} />} />
 		</Switch>
 	);
 }

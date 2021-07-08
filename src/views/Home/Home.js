@@ -10,16 +10,8 @@ const Home = () => {
 	const [invalidSearch, setInvalidSearch] = useState(false);
 
 	const handleSearch = (search) => {
-		doSearch(search);
-	};
-
-	const doSearch = (search) => {
-		const stock = stocklist.filter((stock) => stock.name.toLowerCase().includes(search));
-		if (stock.length) {
-			console.log("mmeeh");
-		} else {
-			setInvalidSearch(true);
-		}
+		let stockFound = stocklist.filter((stock) => stock.symbol === search.toUpperCase());
+		stockFound ? history.push(`/browse/company/${search.toUpperCase()}/profile`, { ticker: search }) : setInvalidSearch(true);
 	};
 
 	return (
